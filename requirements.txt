@@ -1,0 +1,13 @@
+langchain-groq
+langchain 
+google-generativeai
+langchain-google-genai
+requests
+beautifulsoup4
+selenium
+python-dotenv
+pyodbc
+streamlit
+langsmith
+chromadb
+chromedriver_installer

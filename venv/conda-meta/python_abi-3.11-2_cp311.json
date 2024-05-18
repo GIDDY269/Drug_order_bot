@@ -1,0 +1,36 @@
+{
+  "build": "2_cp311",
+  "build_number": 2,
+  "channel": "https://conda.anaconda.org/conda-forge/win-64",
+  "constrains": [
+    "pypy <0a0"
+  ],
+  "depends": [
+    "python 3.11.*"
+  ],
+  "extracted_package_dir": "c:\\Users\\WORK\\miniconda3\\pkgs\\python_abi-3.11-2_cp311",
+  "files": [
+    ".nonadmin"
+  ],
+  "fn": "python_abi-3.11-2_cp311.tar.bz2",
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "link": {
+    "source": "c:\\Users\\WORK\\miniconda3\\pkgs\\python_abi-3.11-2_cp311",
+    "type": 1
+  },
+  "md5": "cb157e2642607f3c79240dfe8d95a738",
+  "name": "python_abi",
+  "package_tarball_full_path": "c:\\Users\\WORK\\miniconda3\\pkgs\\python_abi-3.11-2_cp311.tar.bz2",
+  "paths_data": {
+    "paths": [],
+    "paths_version": 1
+  },
+  "requested_spec": "None",
+  "sha256": "ca6474d6604f47c19b712b41b0377cfeef67a49d6a132c7851eed71ff0ccb55e",
+  "size": 5083,
+  "subdir": "win-64",
+  "timestamp": 1666687699235,
+  "url": "https://conda.anaconda.org/conda-forge/win-64/python_abi-3.11-2_cp311.tar.bz2",
+  "version": "3.11"
+}
