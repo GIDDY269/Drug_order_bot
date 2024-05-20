@@ -50,9 +50,9 @@ def main():
     if uploaded_file:
         
         image = Image.open(uploaded_file)
-        st.image(image)
+        st.image(image,width=200)
 
-        submit = st.button('press')
+
 
 
         input_prompt = '''You are expert pharmacist./n
@@ -61,11 +61,11 @@ def main():
             note: only extract the names of the drugs alone nothing else
             '''
 
-        if submit:
-            image_data = get_image_setup(uploaded_file)
-            response = get_image_respone(input_prompt,image_data)
+        
+        image_data = get_image_setup(uploaded_file)
+        response = get_image_respone(input_prompt,image_data)
 
-            st.write(response)
+        return {response : 'message'}
 
 
 if __name__ == '__main__' :

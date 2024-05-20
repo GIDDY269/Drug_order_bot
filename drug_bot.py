@@ -50,24 +50,24 @@ class InnerOrderAutoInput(BaseModel):
     name:str = Field(description='name of the drug to be order')
     NumOrder:int = Field(description='Number of order to make') 
 
-class OrderAutoInput(BaseModel):
+class OrderAutoTool(BaseModel):
     'For placing drugs orders on the website, only to be used when asked to do so. Do not call automatically without being asked'
     item : List[InnerOrderAutoInput] = Field(description='A list that contains the drug name and number of order')
 
-class image_displayer_input(BaseModel):
+class ImageDisplayerTool(BaseModel):
     '''To display the images or pictures of the drugs, always return the response when done'''
     drug_name:str = Field(...,description='Name of the drug, whose image is to be displayed')
 
-class similarity_search(BaseModel):
+class InventoryTool(BaseModel):
     'To check inventory, get list of drugs and snacks available and search for information about drugs and snacks,their prices or description in the store. Note use this to answer questions and return the exact name in the reach, do not change anything. if you don\'t know , say you don\'t know.'
     user_query:str = Field(description='user query or input')
 
 
 #/// CONVERTING TO FUNCTION DECLARATION OBJECT
 
-order_fun = convert_to_openai_function(OrderAutoInput)
-display_fun = convert_to_openai_function(image_displayer_input)
-simi_fun = convert_to_openai_function(similarity_search)
+order_fun = convert_to_openai_function(OrderAutoTool)
+display_fun = convert_to_openai_function(ImageDisplayerTool)
+simi_fun = convert_to_openai_function(InventoryTool)
 
 #  CREATE CHAT TEMPLATE
 
@@ -83,6 +83,8 @@ system = (
         for example :  Snickers Chocolate 80G for Snickers Chocolate 80G * 24 or Crepe Bandage 10Cm X 4.5M(M/S) for Crepe Bandage 
 
         note: do note include any response like this : Here's a response based on the tool call result:
+
+        ALWAYS CONFIRM ORDER BEFORE PROCESSING, ENSURE THE USER KNOWS THE PRICE AND THE NUMBER OF ORDER YOU ARE ABOUT TO MAKE
      
     '''
 )
@@ -196,18 +198,18 @@ if user_input := st.chat_input('How can i help you today........?',key='User_inp
                     print(params)
                     print(params[key])
                 # PERFORMS THE FUNCTION CALL OUTSIDE THE GEMINI MODEL
-                if function_name == 'similarity_search':
+                if function_name == 'InventoryTool':
                     with st.status('CHECKING STORE DATABASE',expanded=True) as status:
                         api_response = rag.retriever(params[key])
                         status.update(label='INFORMATION RETRIEVED',state='complete',expanded=False)
                     
-                if function_name == 'OrderAutoInput':
+                if function_name == 'OrderAutoTool':
                     with st.status('PLACING ORDER FOR YOU',expanded=True) as status:
                         api_response = order_automation(params[key])
                         status.update(label='ORDER PLACED SUCCESSFULLY',state='complete',expanded=False)
 
                     
-                if function_name == 'image_displayer_input':
+                if function_name == 'ImageDisplayerTool':
                     with st.status('RETRIEVING IMAGE FROM DATABASE',expanded=True) as status:
                         api_response = extract_image_from_database(params[key])
                         status.update(label='IMAGE RETRIEVED',state='complete',expanded=False)
