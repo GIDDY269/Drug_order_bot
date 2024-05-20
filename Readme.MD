@@ -32,17 +32,15 @@ Before you begin, ensure you have met the following requirements:
 ### Installation
 
 1) __Clone the Repository:__
-    `git clone git@github.com:GIDDY269/Drug_order_bot.git`
+    ```git clone git@github.com:GIDDY269/Drug_order_bot.git```
 
 2) __Install Dependencies:__
-    `pip install -r requirements.txt`
+    ```pip install -r requirements.txt```
 
 3) __Set Up Environment Variables:__
     Create a .env file in the root directory of the project and add your API keys and other configurations:
-    `GROQ_API_KEY` = API_KEY
-    `GEMINI API KEY` = API_KEY
-    `SQL SERVER` = SERVER
-    `DATABASE` = DATABASE
+    ```GROQ_API_KEY = API_KEY \n  GEMINI API KEY = API_KEY SQL SERVER = SERVER DATABASE = DATABASE```
+
 
 ### Usage
 
