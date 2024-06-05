@@ -11,6 +11,7 @@ from io import BytesIO
 ## tools 
 from image_displayer import extract_image_from_database
 from order_automation import order_automation
+from RAG import RetrievalAugmentGen
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.utils.function_calling import convert_to_openai_function
@@ -18,11 +19,13 @@ from langchain.pydantic_v1 import BaseModel,Field
 from langchain_core.prompts import (HumanMessagePromptTemplate,
                                     MessagesPlaceholder)
 from langchain_core.messages import HumanMessage,ToolMessage
+from langchain_groq.chat_models import ChatGroq
+from langchain_core.exceptions import LangChainException
 
 import streamlit as st
 
-from RAG import RetrievalAugmentGen
-from langchain_groq import ChatGroq
+
+
 
 rag = RetrievalAugmentGen()
 
@@ -76,16 +79,12 @@ system = (
         you are a very chatty,compassionate and friendly drug store assistant for glovo.Your job is to provide excellent service to customers  and answer questions concerning drugs,snacks in the store,display images amd place drug orders . \n\n
         You should be very detailed when answering question concerning drugs in the store.
 
+        Note: Very important,use the exact name of the drugs return by the inventory tool, do not modify anything, leave the asterisks and brackets as they are. \n
+        for example :  Snickers Chocolate 80G * 24 for Snickers Chocolate 80G or Crepe Bandage for Crepe Bandage 10Cm X 4.5M(M/S) . Take this very seriously, on no condition should you do otherwise.
+
         you have been provide with 3 tools to achieve this task. Use the response of the tool give message back to the user:
-        use only one and ensure to return a text response back to the user
-
-        Note: Very important,use the exact name of the drugs return by the similarity tool, do not modify anything, leave the asterisks and brackets as they are. \n
-        for example :  Snickers Chocolate 80G for Snickers Chocolate 80G * 24 or Crepe Bandage 10Cm X 4.5M(M/S) for Crepe Bandage 
-
-        note: do note include any response like this : Here's a response based on the tool call result:
-
-        ALWAYS CONFIRM ORDER BEFORE PROCESSING, ENSURE THE USER KNOWS THE PRICE AND THE NUMBER OF ORDER YOU ARE ABOUT TO MAKE
-     
+        use only one and ensure to return a text response back to the user.
+       
     '''
 )
 
@@ -106,13 +105,14 @@ prompt = ChatPromptTemplate.from_messages(
 )
 
 # INITIATE LLM AND BIND TOOLS
-new_model = ChatGroq(
+chat_model = ChatGroq(
              model= 'llama3-70b-8192',
              api_key=os.getenv('GROQ_KEY'),
-             temperature=0
+             temperature=0,
+             max_retries=5
         )
 
-chat_with_tools = new_model.bind_tools(tools=[order_fun,display_fun,simi_fun]) 
+chat_with_tools = chat_model.bind_tools(tools=[order_fun,display_fun,simi_fun]) 
 
 
 chain =  prompt | chat_with_tools
@@ -197,7 +197,7 @@ if user_input := st.chat_input('How can i help you today........?',key='User_inp
                     print(function_name)
                     print(params)
                     print(params[key])
-                # PERFORMS THE FUNCTION CALL OUTSIDE THE GEMINI MODEL
+                # PERFORMS THE FUNCTION CALL OUTSIDE THE LLM MODEL
                 if function_name == 'InventoryTool':
                     with st.status('CHECKING STORE DATABASE',expanded=True) as status:
                         api_response = rag.retriever(params[key])
@@ -206,7 +206,7 @@ if user_input := st.chat_input('How can i help you today........?',key='User_inp
                 if function_name == 'OrderAutoTool':
                     with st.status('PLACING ORDER FOR YOU',expanded=True) as status:
                         api_response = order_automation(params[key])
-                        status.update(label='ORDER PLACED SUCCESSFULLY',state='complete',expanded=False)
+                        status.update(label='PROCESS COMPLETED',state='complete',expanded=False)
 
                     
                 if function_name == 'ImageDisplayerTool':
@@ -238,7 +238,7 @@ if user_input := st.chat_input('How can i help you today........?',key='User_inp
                 st.session_state.messages.append({"role": "assistant", "content": response.content})
                 st.session_state.messages.append({'role':'image','content':image})
             
-            except Exception as e:
+            except (Exception,LangChainException) as e:
                 print(f"Error: {e}")
                    
     

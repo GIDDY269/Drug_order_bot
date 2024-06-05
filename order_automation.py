@@ -14,27 +14,32 @@ from PIL import Image
 
 def take_order_screenshot(driver):
         # take screenshot 
-        screenshot_element = driver.find_element(By.XPATH,
-                                                      '//*[@id="default-wrapper"]/div/div/div/section[1]/div[2]/div[2]/div[4]/div/div/div')
+        time.sleep(10)
+        screenshot_element = driver.find_element(By.XPATH,'//*[@id="default-wrapper"]/div/div/div/section[1]/div[2]/div[2]/div[4]/div')
+        WebDriverWait(driver,20).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="default-wrapper"]/div/div/div/section[1]/div[2]/div[2]/div[4]/div/div/div/section/div/section[1]/li')))
         # Get the location and size of the element
         location = screenshot_element.location
         size = screenshot_element.size
+        print(f'the size : {size}')
+        print(f'location : {location}')
 
         
         # Take a screenshot of the entire page
+       # driver.execute_script("window.scrollBy(0, 100);")
         screenshot = driver.get_screenshot_as_png()
 
         # Crop the screenshot to the desired element
-        x = location['x']
-        y = location['y']
+        x = location['x'] 
+        y = location['y'] 
         width = size['width']
-        height = size['height']
+        height = size['height'] 
 
         screenshot = Image.open(BytesIO(screenshot))
-        element_screenshot = screenshot.crop((x, y, x + width, y + height))
+        element_screenshot = screenshot.crop((x, y, x + width,y + height))
 
         element_screenshot_bytes = BytesIO() #to store crenshot in memory
         element_screenshot.save(element_screenshot_bytes,format='PNG')
+        element_screenshot.save('new_photo.png',format='PNG')
 
         element_screenshot_bytes.seek(0) # Reset the stream position to the beginning
 
@@ -60,6 +65,7 @@ def order_automation(items:List):
         else:
             # Desktop viewport size
             driver.maximize_window()
+            
 
         driver.get(url)
         wait = WebDriverWait(driver, 50)
@@ -124,16 +130,16 @@ def order_automation(items:List):
                     # restarts the search for another drug
                     driver.find_element(By.XPATH,
                                         "//*[@id='default-wrapper']/div/div/div/section[1]/div[2]/div/div[3]/div[1]/div[2]/div/form/img").click()
-                    # take screenshot of order
-                    screenshot = take_order_screenshot(driver)
+                    
                     break
+    
                 except Exception as e:
                     # Handle the exception if the element is not clickable
                     print(f"Element not clickable: {e}")
 
 
         # take screenshot of order
-       # screenshot = take_order_screenshot(driver)
+        screenshot = take_order_screenshot(driver)
         
    
     except (TimeoutException, NoSuchElementException, 
@@ -149,7 +155,7 @@ def order_automation(items:List):
 
 
 if __name__ == '__main__':
-    order_automation([{'name':'Postinor *2 Tabs','NumOrder':3},{'name':'Ellaone 30Mg *1Tab','NumOrder':4}])
+    order_automation([{'name':'Panadol Actifast * 14 Tabs','NumOrder':3}])
 
             
 

@@ -11,9 +11,7 @@ The intuition about function calling, is that the model gives structured output 
 * Prerquisties
 * Installation
 * Usage
-* Configuration
-* contribution
-* License
+
 
 ### Features
 * __Large Language Model(llm):__ Used langchain to access the llama3 api using Groq to interpret user messages.
@@ -39,7 +37,7 @@ Before you begin, ensure you have met the following requirements:
 
 3) __Set Up Environment Variables:__
     Create a .env file in the root directory of the project and add your API keys and other configurations:
-    ```GROQ_API_KEY = API_KEY \n  GEMINI API KEY = API_KEY SQL SERVER = SERVER DATABASE = DATABASE```
+    ```GROQ_API_KEY = API_KEY  GEMINI API KEY = API_KEY SQL SERVER = SERVER DATABASE = DATABASE```
 
 
 ### Usage
