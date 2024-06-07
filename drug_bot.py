@@ -54,15 +54,15 @@ class InnerOrderAutoInput(BaseModel):
     NumOrder:int = Field(description='Number of order to make') 
 
 class OrderAutoTool(BaseModel):
-    'For placing drugs orders on the website, only to be used when asked to do so. Do not call automatically without being asked'
+    'To make orders on the website'
     item : List[InnerOrderAutoInput] = Field(description='A list that contains the drug name and number of order')
 
 class ImageDisplayerTool(BaseModel):
-    '''To display the images or pictures of the drugs, always return the response when done'''
+    '''To display the images or pictures of the product, always return the response when done'''
     drug_name:str = Field(...,description='Name of the drug, whose image is to be displayed')
 
 class InventoryTool(BaseModel):
-    'To check inventory, get list of drugs and snacks available and search for information about drugs and snacks,their prices or description in the store. Note use this to answer questions and return the exact name in the reach, do not change anything. if you don\'t know , say you don\'t know.'
+    'To check inventory, get list of drugs and snacks  available and search for information about product,their prices or description in the store. Note use this to answer questions and return the exact name in the reach, do not change anything. if you don\'t know , say you don\'t know.'
     user_query:str = Field(description='user query or input')
 
 
