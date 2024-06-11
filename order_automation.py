@@ -54,7 +54,7 @@ def order_automation(items:List):
     chrome_options.add_argument('--headless')
     chrome_options.chromedriver_executable = "venv/chromedriver-win64/chromedriver.exe"
     try:
-        driver = Chrome()
+        driver = Chrome(options=chrome_options)
         user_agent = driver.execute_script("return navigator.userAgent;")
         is_mobile = 'Mobile' in user_agent
 
@@ -79,8 +79,8 @@ def order_automation(items:List):
         
         for drugs_dict in items:
             dict_keys = list(drugs_dict.keys())
-            drug_name = drugs_dict[dict_keys[0]]
-            number_of_order = drugs_dict[dict_keys[1]]
+            drug_name = drugs_dict['name']
+            number_of_order = drugs_dict['NumOrder']
             print(f'Ordering {drug_name}')
             print(f'number of order {number_of_order}')
 
