@@ -36,7 +36,8 @@ class RetrievalAugmentGen:
         print('creating vectors')
 
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
-                                                                  task_type='retrieval_query')
+                                                                  task_type='retrieval_query',
+                                                                       google_api_key=st.secrets['GEMINI_KEY'])
         
         vector_db = Chroma.from_documents(self.loaded_doc,embedding=embedding,
                                                                         persist_directory=self.persist_directory,)
@@ -47,13 +48,15 @@ class RetrievalAugmentGen:
     def retriever(self,user_query):
 
         print('INSIDE RETRIEVER FILE')
+        print(st.secrets['GEMINI_KEY'])
 
         if os.path.exists(self.persist_directory) == False:
              self.document_loader()
              self.vectore_store()
     
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
-                                                                  task_type='retrieval_query')
+                                                                  task_type='retrieval_query',
+                                                                       google_api_key=st.secrets['GEMINI_KEY'])
         vector_db = Chroma(persist_directory=self.persist_directory,embedding_function=embedding )
 
         retriever = vector_db.as_retriever(search_kwargs={
