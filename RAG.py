@@ -48,7 +48,6 @@ class RetrievalAugmentGen:
     def retriever(self,user_query):
 
         print('INSIDE RETRIEVER FILE')
-        print(st.secrets['GEMINI_KEY'])
 
         if os.path.exists(self.persist_directory) == False:
              self.document_loader()
