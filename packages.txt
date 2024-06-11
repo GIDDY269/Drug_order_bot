@@ -1,0 +1,9 @@
+# ODBC driver for SQL Server
+msodbcsql17
+
+# Unix ODBC development headers
+unixodbc-dev
+
+# Install SQLite3
+sqlite3
+libsqlite3-dev
