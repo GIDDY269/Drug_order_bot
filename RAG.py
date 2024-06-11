@@ -1,6 +1,6 @@
 from langchain_community.document_loaders.csv_loader import CSVLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter,CharacterTextSplitter
-from langchain_community.vectorstores import chroma
+from langchain_chroma import Chroma
 
 from Data_Ingestion.SQL_Database import read_data_from_database
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings

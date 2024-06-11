@@ -11,4 +11,4 @@ streamlit
 langsmith
 chromadb
 langchain-community
-sqlite3
+langchain-chroma
