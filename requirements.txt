@@ -11,3 +11,4 @@ streamlit
 langsmith
 langchain-community
 langchain-chroma
+pysqlite3-binary
