@@ -10,4 +10,4 @@ pyodbc
 streamlit
 langsmith
 chromadb
-chromedriver_installer
+
