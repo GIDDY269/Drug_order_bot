@@ -6,11 +6,11 @@ from Data_Ingestion.schema import CreateScrapeSchema
 from dotenv import load_dotenv
 import os
 import pandas as pd
-
+import streamlit as st
 load_dotenv()
 
-database = os.environ.get('DATABASE')
-server = os.environ.get('SERVER')
+database = st.secrets['DATABASE']
+server = st.secrets['SERVER']
 
 
 #create a connection with database

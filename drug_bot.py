@@ -107,7 +107,7 @@ prompt = ChatPromptTemplate.from_messages(
 # INITIATE LLM AND BIND TOOLS
 chat_model = ChatGroq(
              model= 'llama3-70b-8192',
-             api_key=os.getenv('GROQ_KEY'),
+             api_key=st.secrets['GROQ_KEY'],
              temperature=0,
              max_retries=5
         )

@@ -11,7 +11,7 @@ from dotenv import load_dotenv,find_dotenv
 load_dotenv()
 import os
 from langchain_groq import ChatGroq
-
+import streamlit as st
 
 def format_docs(docs):
             return "\n\n".join(doc.page_content for doc in docs)
@@ -33,7 +33,7 @@ class RetrievalAugmentGen:
 
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
                                                                   task_type='retrieval_query',
-                                                                       google_api_key=os.getenv('GEMINI_KEY'))
+                                                                       google_api_key=st.secrets['GEMINI_KEY'])
         
         vector_db = chroma.Chroma.from_documents(self.loaded_doc,embedding=embedding,
                                                                         persist_directory=self.persist_directory,)
@@ -51,7 +51,7 @@ class RetrievalAugmentGen:
     
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
                                                                   task_type='retrieval_query',
-                                                                       google_api_key=os.getenv('GEMINI_KEY'))
+                                                                       google_api_key=st.secrets['GEMINI_KEY'])
         vector_db = chroma.Chroma(persist_directory=self.persist_directory,embedding_function=embedding )
 
         retriever = vector_db.as_retriever(search_kwargs={
