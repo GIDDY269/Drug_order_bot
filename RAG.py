@@ -1,6 +1,6 @@
 from langchain_community.document_loaders.csv_loader import CSVLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter,CharacterTextSplitter
-from langchain.vectorstores import chroma
+from langchain.vectorstores.chroma import Chroma
 
 from Data_Ingestion.SQL_Database import read_data_from_database
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
@@ -36,7 +36,7 @@ class RetrievalAugmentGen:
                                                                   task_type='retrieval_query',
                                                                        google_api_key=st.secrets['GEMINI_KEY'])
         
-        vector_db = chroma.Chroma.from_documents(self.loaded_doc,embedding=embedding,
+        vector_db = Chroma.from_documents(self.loaded_doc,embedding=embedding,
                                                                         persist_directory=self.persist_directory,)
         vector_db.persist()
         
@@ -53,7 +53,7 @@ class RetrievalAugmentGen:
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
                                                                   task_type='retrieval_query',
                                                                        google_api_key=st.secrets['GEMINI_KEY'])
-        vector_db = chroma.Chroma(persist_directory=self.persist_directory,embedding_function=embedding )
+        vector_db = Chroma(persist_directory=self.persist_directory,embedding_function=embedding )
 
         retriever = vector_db.as_retriever(search_kwargs={
             'k':20
