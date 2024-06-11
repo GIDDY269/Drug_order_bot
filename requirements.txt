@@ -10,4 +10,5 @@ pyodbc
 streamlit
 langsmith
 chromadb
+langchain-community
 
