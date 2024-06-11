@@ -48,6 +48,7 @@ class RetrievalAugmentGen:
     def retriever(self,user_query):
 
         print('INSIDE RETRIEVER FILE')
+        GEMINI_KEY = st.secrets['GEMINI_KEY']
 
         if os.path.exists(self.persist_directory) == False:
              self.document_loader()
@@ -55,7 +56,7 @@ class RetrievalAugmentGen:
     
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
                                                                   task_type='retrieval_query',
-                                                                       google_api_key=st.secrets['GEMINI_KEY'])
+                                                                       google_api_key=GEMINI_KEY)
         vector_db = Chroma(persist_directory=self.persist_directory,embedding_function=embedding )
 
         retriever = vector_db.as_retriever(search_kwargs={
