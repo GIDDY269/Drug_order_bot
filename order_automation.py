@@ -52,7 +52,7 @@ def order_automation(items:List):
     url = 'https://glovoapp.com/ng/en/lagos/medplus-pharmacy-los/'
     chrome_options = Options()
     chrome_options.add_argument('--headless')
-    chrome_options.chromedriver_executable = "venv/chromedriver-win64/chromedriver.exe"
+    #chrome_options.chromedriver_executable = "venv/chromedriver-win64/chromedriver.exe"
     try:
         driver = Chrome(options=chrome_options)
         user_agent = driver.execute_script("return navigator.userAgent;")
