@@ -11,4 +11,3 @@ streamlit
 langsmith
 chromadb
 langchain-community
-langchain-chroma
