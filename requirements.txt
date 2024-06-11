@@ -11,4 +11,5 @@ streamlit
 langsmith
 chromadb
 langchain-community
+sqlite3 = 3.35.0.
 
