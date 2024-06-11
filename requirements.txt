@@ -9,5 +9,5 @@ python-dotenv
 pyodbc
 streamlit
 langsmith
-chromadb
 langchain-community
+langchain-chroma
