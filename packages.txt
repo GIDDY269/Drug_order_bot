@@ -1,4 +1,4 @@
-msodbcsql17
+mssql-server
 unixodbc-dev
 sqlite3
 libsqlite3-dev
