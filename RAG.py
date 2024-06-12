@@ -55,8 +55,7 @@ class RetrievalAugmentGen:
              self.vectore_store()
     
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
-                                                                  task_type='retrieval_query',
-                                                                       google_api_key=GEMINI_KEY)
+                                                                  task_type='retrieval_query')
         vector_db = Chroma(persist_directory=self.persist_directory,embedding_function=embedding )
 
         retriever = vector_db.as_retriever(search_kwargs={
