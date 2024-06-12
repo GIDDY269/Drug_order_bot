@@ -55,7 +55,8 @@ class RetrievalAugmentGen:
              self.vectore_store()
     
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
-                                                                  task_type='retrieval_query')
+                                                                  task_type='retrieval_query',
+                                                                  google_api_key=st.secrets['GEMINI_KEY'])
         vector_db = Chroma(persist_directory=self.persist_directory,embedding_function=embedding )
 
         retriever = vector_db.as_retriever(search_kwargs={
@@ -79,7 +80,7 @@ class RetrievalAugmentGen:
         
         model = ChatGroq(
              model= 'llama3-70b-8192',
-             api_key=os.getenv('GROQ_KEY'),
+             api_key=st.secrets['GROQ_KEY'],
              temperature=0
         )
         retriever_chain = (
