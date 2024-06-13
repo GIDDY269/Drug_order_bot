@@ -9,6 +9,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException,
 import time
 from io import BytesIO
 from PIL import Image
+import chromedriver_autoinstaller
 
 
 
@@ -50,11 +51,15 @@ def order_automation(items:List):
     
     'To make order from web'
     url = 'https://glovoapp.com/ng/en/lagos/medplus-pharmacy-los/'
+    chromedriver_autoinstaller.install()
     chrome_options = Options()
     chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.chromedriver_executable = "venv/chromedriver-win64/chromedriver.exe"
     try:
         driver = Chrome(options=chrome_options)
+        print(f'driver yes : {driver}')
         user_agent = driver.execute_script("return navigator.userAgent;")
         is_mobile = 'Mobile' in user_agent
 
