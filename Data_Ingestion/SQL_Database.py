@@ -16,7 +16,7 @@ server = st.secrets['SERVER']
 #create a connection with database
 def create_sql_connection():
     print('CREATING SQL CONNECTION')
-    connection_string = 'DRIVER={ODBC Driver 17 for SQL Server};' + f'SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+    connection_string = 'DRIVER={SQL Server Native Client 11.0};' + f'SERVER={server};DATABASE={database};Trusted_Connection=yes;'
     connection = pyodbc.connect(connection_string)
     cursor = connection.cursor()
     return connection,cursor
