@@ -9,6 +9,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException,
 import time
 from io import BytesIO
 from PIL import Image
+import streamlit as st
 
 
 
@@ -114,9 +115,12 @@ def order_automation(items:List):
                         while order_count <= number_of_order:
                             print(f'Number of orders made : {order_count}')
 
-                            WebDriverWait(driver,20).until(
+                            wait.until(
                                  EC.element_to_be_clickable((By.CLASS_NAME,'product-row'))
                             ) 
+
+                            sc = driver.get_screenshot_as_png()
+                            st.image(sc,caption='new')
 
                             
                             #search_result.click() 
