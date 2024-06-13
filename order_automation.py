@@ -115,8 +115,8 @@ def order_automation(items:List):
                         while order_count <= number_of_order:
                             print(f'Number of orders made : {order_count}')
 
-                            driver.execute_script("arguments[0].scrollIntoView(true);", search_result)
-                            search_result.click() 
+                            wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row'))).click()
+                            #search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
                                 
                             # excutes when there is a add location overlay
