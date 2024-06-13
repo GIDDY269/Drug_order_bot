@@ -115,15 +115,8 @@ def order_automation(items:List):
                         while order_count <= number_of_order:
                             print(f'Number of orders made : {order_count}')
 
-                            wait.until(
-                                 EC.element_to_be_clickable((By.CLASS_NAME,'product-row'))
-                            ) 
-
-                            sc = driver.get_screenshot_as_png()
-                            st.image(sc,caption='new')
-
-                            
-                            #search_result.click() 
+                            time.sleep(15)
+                            search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
                                 
                             # excutes when there is a add location overlay
