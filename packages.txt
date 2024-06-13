@@ -1,3 +1,5 @@
+chromium
+chromium-driver
 msodbcsql17
 unixodbc
 sqlite3
