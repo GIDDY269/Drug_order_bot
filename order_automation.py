@@ -116,7 +116,7 @@ def order_automation(items:List):
 
                             WebDriverWait(driver,20).until(
                                  EC.element_to_be_clickable((By.CLASS_NAME,'product-row'))
-                            ).click()  
+                            ) 
 
                             
                             #search_result.click() 
