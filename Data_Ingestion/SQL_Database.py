@@ -12,8 +12,6 @@ load_dotenv()
 database = st.secrets['DATABASE']
 server = st.secrets['SERVER']
 
-print(f'the server : {server}')
-
 
 #create a connection with database
 def create_sql_connection():
