@@ -122,14 +122,14 @@ def order_automation(items:List):
                             #search_result.click() 
                                 
                             # excutes when there is a add location overlay
-                            path_element = wait.until(
-                                EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
-                                    )
+                            #path_element = wait.until(
+                             #   EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
+                              #      )
                     
-                            if order_count == 1: 
-                                 path_element.click() 
-                            else:
-                                pass
+                           # if order_count == 1: 
+                            #     path_element.click() 
+                            #else:
+                             #   pass
                             #clicks on add to cart button 
                             add_to_cart = wait.until(EC.element_to_be_clickable((By.XPATH,
                                                                                  "//button[@class='helio-button custom-submit primary custom-submit--centered']"))
