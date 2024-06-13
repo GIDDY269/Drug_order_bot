@@ -1,7 +1,4 @@
 chromium
 chromium-driver
-msodbcsql17
-unixodbc
-sqlite3
-libsqlite3-dev
+
 
