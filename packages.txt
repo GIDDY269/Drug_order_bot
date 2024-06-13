@@ -1,5 +1,5 @@
 msodbcsql17
-unixodbc-dev
+unixodbc
 sqlite3
 libsqlite3-dev
 
