@@ -44,4 +44,4 @@ def extract_image_from_database(drug_name:str):
 
 
 if __name__ == '__main__':
-    extract_image_from_database('Clearblue Pregnancy Test *1 Tests')
+    extract_image_from_database('Listerine Mouthwash 250Ml(Cool Mint)')
