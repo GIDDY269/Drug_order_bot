@@ -1,4 +1,4 @@
 chromium
 chromium-driver
-
+msodbcsql17
 
