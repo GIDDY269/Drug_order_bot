@@ -114,23 +114,24 @@ def order_automation(items:List):
                         while order_count <= number_of_order:
                             print(f'Number of orders made : {order_count}')
 
-                            #WebDriverWait(driver,20).until(
-                             #    EC.element_to_be_clickable((By.CLASS_NAME,'product-row'))
-                            #)  
+                            WebDriverWait(driver,20).until(
+                                 EC.element_to_be_clickable((By.CLASS_NAME,'product-row'))
+                            ).click()  
 
                             
-                            search_result.click() 
+                            #search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
                                 
                             # excutes when there is a add location overlay
-                            #path_element = wait.until(
-                             #   EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
-                              #      )
+                            path_element = wait.until(
+                                EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
+                                    )
                     
-                           # if order_count == 1: 
-                            #     path_element.click() 
-                            #else:
-                             #   pass
+                            if order_count == 1: 
+                                 path_element.click() 
+                            else:
+                                pass
+                            print('CLICKED ON LOCATION OVERLAY')
                             #clicks on add to cart button 
                             add_to_cart = wait.until(EC.element_to_be_clickable((By.XPATH,
                                                                                  "//button[@class='helio-button custom-submit primary custom-submit--centered']"))
