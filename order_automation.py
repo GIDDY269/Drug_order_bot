@@ -115,7 +115,7 @@ def order_automation(items:List):
                         while order_count <= number_of_order:
                             print(f'Number of orders made : {order_count}')
 
-                            time.sleep(15)
+                            driver.execute_script("arguments[0].scrollIntoView(true);", search_result)
                             search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
                                 
