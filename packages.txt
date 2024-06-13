@@ -1,4 +1,5 @@
 chromium
 chromium-driver
-sqlsrv32
+msodbcsql17
+unixodbc
 
