@@ -1,7 +1,7 @@
 langchain-groq
 langchain 
 google-generativeai
-langchain-google-genai
+langchain-google-genai==1.0.3
 requests
 beautifulsoup4
 selenium
