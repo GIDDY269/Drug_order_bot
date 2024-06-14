@@ -26,14 +26,12 @@ def extract_image_from_database(drug_name:str):
         #cursor.execute(select_query, (drug_name,))
         # Fetch the result
         #result = cursor.fetchone()
-    
-        if image_url:
+        get_image = requests.get(image_url)
+        if requests.status_codes == 200:
             try:
-                get_image = requests.get(image_url)
-            
-            
+                
                 image = BytesIO(get_image.content)
-                print(image)
+
                 
                 
                 return {f'This is what the image of the drug {drug_name} looks like':image}
