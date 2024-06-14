@@ -15,7 +15,7 @@ def extract_image_from_database(drug_name:str):
     # create an sql connection
     'To display images'
 
-    cnxn,cursor = create_sql_connection()
+    #cnxn,cursor = create_sql_connection()
 
 
     try:
