@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import os
 import pandas as pd
 import streamlit as st
+import sqlserverport
 load_dotenv()
 
 database = st.secrets['DATABASE']
@@ -18,7 +19,8 @@ PWD = st.secrets['PWD']
 #create a connection with database
 def create_sql_connection():
     print('CREATING SQL CONNECTION')
-    connection_string = 'DRIVER={ODBC Driver 17 for SQL Server};' + f'SERVER={server},1433;;DATABASE={database};UID={UID};PWD={PWD};'
+    serverspec = f'{server},{sqlserverport.lookup(server, "SQLEXPRESS")}'
+    connection_string = 'DRIVER={ODBC Driver 17 for SQL Server};' + f'SERVER={serverspec};;DATABASE={database};UID={UID};PWD={PWD};'
     connection = pyodbc.connect(connection_string)
     cursor = connection.cursor()
     return connection,cursor
