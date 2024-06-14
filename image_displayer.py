@@ -33,6 +33,7 @@ def extract_image_from_database(drug_name:str):
             
             
                 image = BytesIO(get_image.content)
+                print(image)
                 
                 
                 return {f'This is what the image of the drug {drug_name} looks like':image}
