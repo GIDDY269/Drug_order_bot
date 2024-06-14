@@ -26,21 +26,16 @@ def extract_image_from_database(drug_name:str):
         #cursor.execute(select_query, (drug_name,))
         # Fetch the result
         #result = cursor.fetchone()
-        get_image = requests.get(image_url)
 
-        if get_image.status_code == 200:
-            try:
-                
-                image = BytesIO(get_image.content)
-
-                
-                
-                return {f'This is what the image of the drug {drug_name} looks like':image}
+        try:
+            get_image = requests.get(image_url)
+            image = BytesIO(get_image.content)
             
-            except requests.exceptions.RequestException as e:
-                return {f"Error retrieving image: {e}": 'message'}     
-        else:
-            return {'No image for this drug for now':'message'}
+            return {f'This is what the image of the drug {drug_name} looks like':image}
+            
+        except requests.exceptions.RequestException as e:
+            return {f"Error retrieving image: {e}": 'message'}     
+        
     except Exception as e :
         return {'Can not retrieve image' : 'message'}
         
