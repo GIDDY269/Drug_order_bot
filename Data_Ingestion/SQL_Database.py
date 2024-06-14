@@ -18,7 +18,7 @@ PWD = st.secrets['PWD']
 #create a connection with database
 def create_sql_connection():
     print('CREATING SQL CONNECTION')
-    connection_string = 'DRIVER={ODBC Driver 13 for SQL Server};' + f'SERVER={server};;DATABASE={database};UID={UID};PWD={PWD};Trust_Connection=yes'
+    connection_string = 'DRIVER={ODBC Driver 17 for SQL Server};' + f'SERVER={server};;DATABASE={database};UID={UID};PWD={PWD};Trust_Connection=yes'
     connection = pyodbc.connect(connection_string)
     cursor = connection.cursor()
     return connection,cursor
