@@ -18,7 +18,7 @@ def extract_image_from_database(drug_name:str):
 
 
 
-    data = pd.read_csv('Data_Ingestion\data2.csv')
+    data = pd.read_csv('Data_Ingestion/data2.csv')
     sub_data = data[data['Product']==drug_name]
     image_url = sub_data['Image_URL'].iloc[0]
         
