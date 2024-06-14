@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 import os
 import pandas as pd
 import streamlit as st
-import sqlserverport
 load_dotenv()
 
 database = st.secrets['DATABASE']
