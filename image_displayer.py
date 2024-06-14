@@ -27,7 +27,8 @@ def extract_image_from_database(drug_name:str):
         # Fetch the result
         #result = cursor.fetchone()
         get_image = requests.get(image_url)
-        if requests.status_codes == 200:
+
+        if get_image.status_code == 200:
             try:
                 
                 image = BytesIO(get_image.content)
