@@ -3,8 +3,7 @@
 from PIL import Image
 import requests
 from io import BytesIO
-#from langchain.agents import tool
-import pyodbc
+
 import pandas as pd
 
 
@@ -42,12 +41,9 @@ def extract_image_from_database(drug_name:str):
                 return {f"Error retrieving image: {e}": 'message'}     
         else:
             return {'No image for this drug for now':'message'}
+    except Exception as e :
+        return {'Can not retrieve image' : 'message'}
         
-    except (Exception, pyodbc.Error) as err:  # Catch general and database errors
-        return {" can not retrieve image right now because of Database error: {err}":'message'}
-            
-    #finally:
-        #cnxn.close()
 
 
 
