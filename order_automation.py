@@ -124,12 +124,14 @@ def order_automation(items:List):
                                 EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
                                     )
                     
-                            if order_count == 1: 
+                            if order_count == 1:
+                                 print('TRYING TO CLICK ON OVERLAY') 
                                  path_element.click() 
                             else:
                                 pass
                             print('CLICKED ON LOCATION OVERLAY')
                             #clicks on add to cart button 
+                            print('CLICKING ON PRODUCT')
                             add_to_cart = wait.until(EC.element_to_be_clickable((By.XPATH,
                                                                                  "//button[@class='helio-button custom-submit primary custom-submit--centered']"))
                                                                                  ).click()

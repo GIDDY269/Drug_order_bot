@@ -30,11 +30,10 @@ def extract_image_from_database(drug_name:str):
     try:
         get_image = requests.get(image_url)
         image = BytesIO(get_image.content)
-            
         return {f'This is what the image of the drug {drug_name} looks like':image}
             
     except requests.exceptions.RequestException as e:
-        return {f"Error retrieving image: {e}": 'message'}     
+        return {f"Error retrieving image, could not place order: {e}": 'message'}     
    
         
 
