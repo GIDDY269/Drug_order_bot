@@ -115,7 +115,7 @@ def order_automation(items:List):
                         while order_count <= number_of_order:
                             print(f'Number of orders made : {order_count}')
 
-                            wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row'))).click()
+                            wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row-content'))).click()
                             #search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
                                 
