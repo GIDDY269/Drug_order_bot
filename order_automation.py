@@ -117,6 +117,7 @@ def order_automation(items:List):
                             time.sleep(10)
                             sc = driver.get_screenshot_as_png()
                             sc.save('debug_photo.png',format='PNG')
+                            print('saved screenshot')
                             wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row-content'))).click()
                             #search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
