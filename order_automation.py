@@ -59,7 +59,7 @@ def order_automation(items:List):
     chrome_options.add_argument("--disable-gpu")
     #chrome_options.chromedriver_executable = "chromedriver-win64/chromedriver.exe"
     try:
-        driver = Chrome()
+        driver = Chrome(options=chrome_options)
         print(f'driver yes : {driver}')
         user_agent = driver.execute_script("return navigator.userAgent;")
         is_mobile = 'Mobile' in user_agent
