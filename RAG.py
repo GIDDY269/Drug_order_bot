@@ -5,7 +5,7 @@ from langchain_community.document_loaders.csv_loader import CSVLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter,CharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 
-from Data_Ingestion.SQL_Database import read_data_from_database
+
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
 from langchain_core.prompts import (ChatPromptTemplate,
                                     SystemMessagePromptTemplate,PromptTemplate,
@@ -27,7 +27,7 @@ class RetrievalAugmentGen:
     
     def document_loader(self):
         # fetch data from database
-        data_path = read_data_from_database()
+        data_path = 'Data_Ingestion/data2.csv'
         csv_loader = CSVLoader(data_path,encoding='utf-8',source_column='Product') 
         self.loaded_doc = csv_loader.load()
 
