@@ -120,6 +120,7 @@ def order_automation(items:List):
                             print('CLICKED ON SEARCH RESULT')
                                 
                             # excutes when there is a add location overlay
+                            print('Finding location of overlay')
                             path_element = wait.until(
                                 EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
                                     )
