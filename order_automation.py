@@ -114,7 +114,9 @@ def order_automation(items:List):
                         order_count = 1
                         while order_count <= number_of_order:
                             print(f'Number of orders made : {order_count}')
-
+                            time.sleep(10)
+                            sc = driver.get_screenshot_as_png()
+                            sc.save('debug_photo.png',format='PNG')
                             wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row-content'))).click()
                             #search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
