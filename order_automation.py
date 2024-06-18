@@ -118,8 +118,8 @@ def order_automation(items:List):
                             time.sleep(10)
                             sc = driver.save_screenshot('debug_photo.png')
                             print('saved screenshot')
-                            wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row__picture'))).click()
-                            #search_result.click() 
+                            #wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row__picture'))).click()
+                            search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
                                 
                             # excutes when there is a add location overlay
