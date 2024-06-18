@@ -107,6 +107,7 @@ def order_automation(items:List):
 
                     # the issues maybe here , foe not clicking on the item
                     search_result = driver.find_element(By.CLASS_NAME,'product-row')  
+                    print(f'search element : {search_result}')
 
                     #check if name matches
                     if search_result.find_element(By.CLASS_NAME,'product-row__name').text == drug_name: 
@@ -117,7 +118,7 @@ def order_automation(items:List):
                             time.sleep(10)
                             sc = driver.save_screenshot('debug_photo.png')
                             print('saved screenshot')
-                            wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row-content'))).click()
+                            wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row__picture'))).click()
                             #search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
                                 
