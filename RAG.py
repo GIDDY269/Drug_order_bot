@@ -1,11 +1,9 @@
-#__import__('pysqlite3') 
+__import__('pysqlite3') 
 import sys
-#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-#from langchain_community.document_loaders.csv_loader import CSVLoader
-#from langchain_community.vectorstores import Chroma
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+from langchain_community.document_loaders.csv_loader import CSVLoader
+from langchain_community.vectorstores import Chroma
 
-from langchain.document_loaders.csv_loader import CSVLoader
-from langchain.vectorstores.chroma import Chroma
 
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
 from langchain_core.prompts import PromptTemplate                                    
