@@ -1,5 +1,5 @@
 import requests
-from typing import List,Tuple,Optional
+from typing import List
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,8 +9,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException,
 import time
 from io import BytesIO
 from PIL import Image
-import streamlit as st
-from selenium.webdriver.common.action_chains import ActionChains
+
 
 
 
@@ -23,12 +22,9 @@ def take_order_screenshot(driver):
         # Get the location and size of the element
         location = screenshot_element.location
         size = screenshot_element.size
-        print(f'the size : {size}')
-        print(f'location : {location}')
-
-        
+   
         # Take a screenshot of the entire page
-       # driver.execute_script("window.scrollBy(0, 100);")
+     
         screenshot = driver.get_screenshot_as_png()
 
         # Crop the screenshot to the desired element
@@ -42,7 +38,6 @@ def take_order_screenshot(driver):
 
         element_screenshot_bytes = BytesIO() #to store crenshot in memory
         element_screenshot.save(element_screenshot_bytes,format='PNG')
-        element_screenshot.save('new_photo.png',format='PNG')
 
         element_screenshot_bytes.seek(0) # Reset the stream position to the beginning
 
@@ -59,22 +54,9 @@ def order_automation(items:List):
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1080")  
-    #chrome_options.chromedriver_executable = "chromedriver-win64/chromedriver.exe"
+
     try:
         driver = Chrome(options=chrome_options)
-        print(f'driver yes : {driver}')
-        user_agent = driver.execute_script("return navigator.userAgent;")
-        is_mobile = 'Mobile' in user_agent
-
-        # Set viewport size based on the device type
-        if is_mobile:
-            # Mobile viewport size
-            driver.set_window_size(375, 812)  
-        else:
-            # Desktop viewport size
-            driver.maximize_window()
-            
-
         driver.get(url)
         wait = WebDriverWait(driver, 50)
 
@@ -109,9 +91,6 @@ def order_automation(items:List):
 
                     # the issues maybe here , foe not clicking on the item
                     search_result = driver.find_element(By.CLASS_NAME,'product-row')  
-                    #driver.execute_script("arguments[0].scrollIntoView();", search_result)
-                    actions = ActionChains(driver)
-                    print(f'search element : {search_result}')
 
                     #check if name matches
                     if search_result.find_element(By.CLASS_NAME,'product-row__name').text == drug_name: 
@@ -119,17 +98,10 @@ def order_automation(items:List):
                         order_count = 1
                         while order_count <= number_of_order:
                             print(f'Number of orders made : {order_count}')
-                            time.sleep(10)
-                            sc = driver.save_screenshot('debug_photo.png')
-                            print('saved screenshot')
-                            
+                            time.sleep(5)
                             wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row__content'))).click()
-                           # actions.move_to_element(search_result).click().perform()
-                            #search_result.click() 
-                            print('CLICKED ON SEARCH RESULT')
                                 
-                            # excutes when there is a add location overlay
-                            print('Finding location of overlay')
+                            # excutes when there is a location overlay
                             time.sleep(5)
                             
                             path_element = wait.until(
@@ -137,17 +109,13 @@ def order_automation(items:List):
                                     )
                     
                             if order_count == 1:
-                                 
-                                 print('TRYING TO CLICK ON OVERLAY') 
                                  path_element.click() 
                             else:
                                 pass
-                            print('CLICKED ON LOCATION OVERLAY')
                             #clicks on add to cart button 
-                            print('CLICKING ON PRODUCT')
-                            add_to_cart = wait.until(EC.element_to_be_clickable((By.XPATH,
-                                                                                 "//button[@class='helio-button custom-submit primary custom-submit--centered']"))
-                                                                                 ).click()
+                            wait.until(EC.element_to_be_clickable((By.XPATH,
+                                                                    "//button[@class='helio-button custom-submit primary custom-submit--centered']"))
+                                                                         ).click()
                             driver.implicitly_wait(20)
                             order_count += 1
                         
