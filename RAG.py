@@ -34,7 +34,7 @@ class RetrievalAugmentGen:
 
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
                                                                   task_type='retrieval_query',
-                                                                       google_api_key=os.getenv('GEMINI_KEY'))
+                                                                       google_api_key=st.secrets['GEMINI_KEY'])
         
         vector_db = Chroma.from_documents(self.loaded_doc,embedding=embedding,
                                                                         persist_directory=self.persist_directory,)
