@@ -246,16 +246,7 @@ if user_input := st.chat_input('How can i help you today........?',key='User_inp
 
 
 
-        
-
-
-
-print(st.session_state.chat_history)
-print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-print(st.session_state.messages)
-print('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW')
-#print(st.session_state.images_loaded)
-
+    
 
 
 
