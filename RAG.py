@@ -45,7 +45,6 @@ class RetrievalAugmentGen:
     def retriever(self,user_query):
 
         print('INSIDE RETRIEVER FILE')
-        GEMINI_KEY = st.secrets['GEMINI_KEY']
 
         if os.path.exists(self.persist_directory) == False:
              self.document_loader()
@@ -89,14 +88,7 @@ class RetrievalAugmentGen:
         return {response.content:'result of search'}
 
     
-
-      
-if __name__ == '__main__':
-
-    Rag_system  = RetrievalAugmentGen()
-    Rag_system.document_loader()
-    Rag_system.loaded_doc
-    Rag_system.vectore_store()     
+   
         
         
         
