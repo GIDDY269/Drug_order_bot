@@ -6,8 +6,7 @@ from langchain_community.vectorstores import Chroma
 
 
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
-from langchain_core.prompts import PromptTemplate
-                                    
+from langchain_core.prompts import PromptTemplate                                    
 from langchain_core.runnables import RunnablePassthrough
 from dotenv import load_dotenv,find_dotenv
 load_dotenv()
