@@ -1,9 +1,11 @@
-__import__('pysqlite3') 
+#__import__('pysqlite3') 
 import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-from langchain_community.document_loaders.csv_loader import CSVLoader
-from langchain_community.vectorstores import Chroma
+#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+#from langchain_community.document_loaders.csv_loader import CSVLoader
+#from langchain_community.vectorstores import Chroma
 
+from langchain.document_loaders.csv_loader import CSVLoader
+from langchain.vectorstores.chroma import Chroma
 
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
 from langchain_core.prompts import PromptTemplate                                    
@@ -34,7 +36,7 @@ class RetrievalAugmentGen:
 
         embedding = GoogleGenerativeAIEmbeddings(model='models/embedding-001',
                                                                   task_type='retrieval_query',
-                                                                       google_api_key=st.secrets['GEMINI_KEY'])
+                                                                       google_api_key=os.getenv('GEMINI_KEY'))
         
         vector_db = Chroma.from_documents(self.loaded_doc,embedding=embedding,
                                                                         persist_directory=self.persist_directory,)
