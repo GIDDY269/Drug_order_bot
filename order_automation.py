@@ -68,66 +68,60 @@ def order_automation(items:List):
              )).click()
         
         for drugs_dict in items:
-            dict_keys = list(drugs_dict.keys())
             drug_name = drugs_dict['name']
             number_of_order = drugs_dict['NumOrder']
-            print(f'Ordering {drug_name}')
-            print(f'number of order {number_of_order}')
 
-            search_elements = driver.find_elements(By.CLASS_NAME,'search-input__field')
+            search_input = driver.find_elements(By.CLASS_NAME,'search-input__field')[2]
 
-            for search_input in search_elements:
-                try:
-                    # Wait for the element to be clickable
-                  
-
-                    if wait.until(EC.element_to_be_clickable((By.ID, search_input.get_attribute("id")))):
-                        # If the element is interactable, send keys
-                        search_input.send_keys(drug_name)
-                    
-
-                    # wait for search results
-                    wait.until(EC.presence_of_element_located((By.CLASS_NAME,'list__container')))
-
-                    # the issues maybe here , foe not clicking on the item
-                    search_result = driver.find_element(By.CLASS_NAME,'product-row')  
-
-                    #check if name matches
-                    if search_result.find_element(By.CLASS_NAME,'product-row__name').text == drug_name: 
-                            
-                        order_count = 1
-                        while order_count <= number_of_order:
-                            print(f'Number of orders made : {order_count}')
-                            time.sleep(5)
-                            wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row__content'))).click()
-                                
-                            # excutes when there is a location overlay
-                            time.sleep(5)
-                            
-                            path_element = wait.until(
-                                EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
-                                    )
-                    
-                            if order_count == 1:
-                                 path_element.click() 
-                            else:
-                                pass
-                            #clicks on add to cart button 
-                            wait.until(EC.element_to_be_clickable((By.XPATH,
-                                                                    "//button[@class='helio-button custom-submit primary custom-submit--centered']"))
-                                                                         ).click()
-                            driver.implicitly_wait(20)
-                            order_count += 1
+            
+            try:
+                # Wait for the element to be clickable
+              
+                
+                if wait.until(EC.element_to_be_clickable((By.ID, search_input.get_attribute("id")))):
+                    # If the element is interactable, send keys
+                    search_input.send_keys(drug_name)
+                
+                # wait for search results
+                wait.until(EC.presence_of_element_located((By.CLASS_NAME,'list__container')))
+                # the issues maybe here , foe not clicking on the item
+                search_result = driver.find_element(By.CLASS_NAME,'product-row')  
+                #check if name matches
+                if search_result.find_element(By.CLASS_NAME,'product-row__name').text == drug_name: 
                         
-                    # restarts the search for another drug
-                    driver.find_element(By.XPATH,
-                                        "//*[@id='default-wrapper']/div/div/div/section[1]/div[2]/div/div[3]/div[1]/div[2]/div/form/img").click()
+                    order_count = 1
+                    while order_count <= number_of_order:
+                        print(f'Number of orders made : {order_count}')
+                        time.sleep(5)
+                        wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row__content'))).click()
+                            
+                        # excutes when there is a location overlay
+                        time.sleep(5)
+                        
+                        path_element = wait.until(
+                            EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
+                                )
+                
+                        if order_count == 1:
+                             path_element.click() 
+                        else:
+                            pass
+                        #clicks on add to cart button 
+                        wait.until(EC.element_to_be_clickable((By.XPATH,
+                                                                "//button[@class='helio-button custom-submit primary custom-submit--centered']"))
+                                                                     ).click()
+                        driver.implicitly_wait(20)
+                        order_count += 1
                     
-                    break
-    
-                except Exception as e:
-                    # Handle the exception if the element is not clickable
-                    print(f"Element not clickable: {e}")
+                # restarts the search for another drug
+                driver.find_element(By.XPATH,
+                                    "//*[@id='default-wrapper']/div/div/div/section[1]/div[2]/div/div[3]/div[1]/div[2]/div/form/img").click()
+                
+               # break
+
+            except Exception as e:
+                # Handle the exception if the element is not clickable
+                print(f"Element not clickable: {e}")
 
 
         # take screenshot of order
@@ -145,9 +139,6 @@ def order_automation(items:List):
 
 
 
-
-if __name__ == '__main__':
-    order_automation([{'name':'Panadol Actifast * 14 Tabs','NumOrder':3}])
 
             
 
