@@ -10,6 +10,7 @@ import time
 from io import BytesIO
 from PIL import Image
 import streamlit as st
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 
@@ -57,6 +58,7 @@ def order_automation(items:List):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1920,1080")  
     #chrome_options.chromedriver_executable = "chromedriver-win64/chromedriver.exe"
     try:
         driver = Chrome(options=chrome_options)
@@ -107,6 +109,8 @@ def order_automation(items:List):
 
                     # the issues maybe here , foe not clicking on the item
                     search_result = driver.find_element(By.CLASS_NAME,'product-row')  
+                    #driver.execute_script("arguments[0].scrollIntoView();", search_result)
+                    actions = ActionChains(driver)
                     print(f'search element : {search_result}')
 
                     #check if name matches
@@ -118,12 +122,16 @@ def order_automation(items:List):
                             time.sleep(10)
                             sc = driver.save_screenshot('debug_photo.png')
                             print('saved screenshot')
-                            #wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row__picture'))).click()
-                            search_result.click() 
+                            
+                            wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'product-row__content'))).click()
+                           # actions.move_to_element(search_result).click().perform()
+                            #search_result.click() 
                             print('CLICKED ON SEARCH RESULT')
                                 
                             # excutes when there is a add location overlay
                             print('Finding location of overlay')
+                            time.sleep(5)
+                            
                             path_element = wait.until(
                                 EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[data-v-60bfb9dd]'))
                                     )
