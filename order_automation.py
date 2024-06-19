@@ -117,7 +117,7 @@ def order_automation(items:List):
                 driver.find_element(By.XPATH,
                                     "//*[@id='default-wrapper']/div/div/div/section[1]/div[2]/div/div[3]/div[1]/div[2]/div/form/img").click()
                 
-               # break
+
 
             except Exception as e:
                 # Handle the exception if the element is not clickable
