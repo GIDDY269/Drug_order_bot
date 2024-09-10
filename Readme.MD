@@ -1,5 +1,7 @@
 ## LANCHAIN CHATBOT FOR MAKING ORDER ON A WEBSITE POWERED BY FUNCTION CALLING IN LLAMA3
 
+Video link on how the chatbot performs : https://x.com/oboro_gideon/status/1803518453334110381?t=XEoxb39Q8owronYrfPSLgw&s=19
+
 This is a chatbot designed to assist users in placing orderson a pharmaceutical e-commerce website using the function calling features in llama3.
 
 The intuition about function calling, is that the model gives structured output which will be used to make an api call. The response of the api call will be passed back to the model to give back the final response.
