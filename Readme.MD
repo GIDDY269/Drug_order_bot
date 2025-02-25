@@ -6,9 +6,9 @@
 * __Technologies Used:__ Large Language Models (LLM), Retrieval-Augmented Generation (RAG),
 Web Scraping, FastAPI, LangChain, Database Integration
 * __Results:__
-* Automated 80% of customer inquiries about drug availability
-* Enabled customers to browse and add drugs to their cart seamlessly
-* Reduced manual workload for store staff by over 60%
+  * Automated 80% of customer inquiries about drug availability
+  * Enabled customers to browse and add drugs to their cart seamlessly
+  * Reduced manual workload for store staff by over 60%
 ## The Problem/Goal
 E-commerce websites often struggle with high volumes of customer inquiries about product
 availability, pricing, and details. Many customers either browse the website trying to find what
