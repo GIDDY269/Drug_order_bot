@@ -1,11 +1,11 @@
 # AI-Powered Chatbot Revolutionizes Online Drug Inventory Management
 ## Case overview
-__Client:__ Self-initiated project for GLOVO (Healthcare & E-commerce)
-__Industry:__ Pharmacy, Online Retail, AI Chatbots
-__Product:__ LLM-powered chatbot system for inventory management and customer engagement
-__Technologies Used:__ Large Language Models (LLM), Retrieval-Augmented Generation (RAG),
+* __Client:__ Self-initiated project for GLOVO (Healthcare & E-commerce)
+* __Industry:__ Pharmacy, Online Retail, AI Chatbots
+* __Product:__ LLM-powered chatbot system for inventory management and customer engagement
+* __Technologies Used:__ Large Language Models (LLM), Retrieval-Augmented Generation (RAG),
 Web Scraping, FastAPI, LangChain, Database Integration
-__Results:__
+* __Results:__
 1. Automated 80% of customer inquiries about drug availability
 2. Enabled customers to browse and add drugs to their cart seamlessly
 3. Reduced manual workload for store staff by over 60%
